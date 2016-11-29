@@ -1,3 +1,8 @@
+/* Performs Heap Sort on an Integer array.
+ * 
+ * Name: Kameron Damaska
+ * ID: krd42
+ * Date: 11/29/2016 */
 public class HeapSort {
 
     public static void main(String[] args) {
