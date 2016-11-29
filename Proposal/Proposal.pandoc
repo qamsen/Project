@@ -1,0 +1,52 @@
+% EECS 233 Project Proposal
+% Kameron Damaska (krd42)
+ Drew Borneman (awb79)
+% \today
+
+\tableofcontents
+\pagebreak
+
+Proposal
+========
+
+Summary
+-------
+
+Our project will be a graphical respresentation of sorting algorithms.
+
+GUI
+---
+
+The program will launch a GUI, with the option to select the following sorting algorithms:
+
+- `HeapSort`
+- `InsertionSort`
+- `MergeSort`
+- `BubbleSort`
+- `QuickSort`
+
+Any number of algorithms can be selected. Additionally, the user will be able
+to enter the size of the array that will be sorted.
+
+Graphical Representation
+------------------------
+
+Once the user inputs this information, a window will launch that will compare
+the sorting algorithms. For each algorithm selected, a graphical representation
+of the array will be initialized. The array index will be on the x-axis and the
+value in the array will be on the y-axis.
+
+The graph will illustrate how each sorting algorithm functions, highlighting
+the parts of the array being changed. Additional important information (such as
+the pivot for `QuickSort` and the subarrays in `MergeSort`) will also be
+highlighted on the graphs. The sorts will have to be slowed down, to better
+illustrate how the algorithms function. Without this, the sorting would happen
+too quickly and it would be incomprehensible.
+
+Code
+----
+
+We plan on writing all of the code for the sorting algorithms, as it is an
+opportunity to translate the logic we covered in class to Java. The only code
+that we may be using that does not come directly from the Java API is an API
+for graphically representing the sorting algorithms.
