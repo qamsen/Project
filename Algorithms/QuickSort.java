@@ -7,7 +7,7 @@
 package com.company;
 import java.util.Arrays;
 
-public class Main{
+public class QuickSort{
 
     public static void main(String[] args) {
         Integer[] a = {7, 4, 5, 6, 3, 1, 8, 2};
