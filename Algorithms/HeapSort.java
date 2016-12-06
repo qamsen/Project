@@ -3,45 +3,43 @@
  * Name: Kameron Damaska
  * ID: krd42
  * Date: 11/29/2016 */
-public class HeapSort {
+public class HeapSort extends Sort {
 
-    public static void main(String[] args) {
-        Integer[] arr = {2, 1, 3, 4};
-        sort(arr);
-        for (int i : arr)
-            System.out.print(i);
+    public HeapSort(Integer[] arr) {
+        super(arr);
     }
 
-    public static Integer[] sort(Integer[] arr) {
+    /**
+     * Sorts the array using HeapSort.
+     */
+    public void sort() {
 
         /* Turns the array into a max heap */
-        buildHeap(arr);
+        buildHeap();
 
         /* Starts at the last value in the heap */
-        for (int i = arr.length - 1; i > 0; i--) {
+        for (int i = getArray().length - 1; i > 0; i--) {
 
             /* Swaps the largest value with the last unsorted value */
-            swap(arr, 0, i);
+            swap(0, i);
 
             /* bubbles the largest unsorted value up the heap */
-            bubbleUp(arr, 0, i);
+            bubbleUp(0, i);
         }
 
-        return arr;
     }
 
     /**
      * Swaps the values in an array at two giving indeces.
      *
-     * @param arr the array in which values are being swapped.
      * @param i1  the index of a value to be swapped.
      * @param i2  the index of a value to be swapped.
      */
-    private static void swap(Integer[] arr, int i1, int i2) {
+    private void swap(int i1, int i2) {
 
-        int tmp = arr[i1];
-        arr[i1] = arr[i2];
-        arr[i2] = tmp;
+        int tmp = getArray()[i1];
+        getArray()[i1] = getArray()[i2];
+        getArray()[i2] = tmp;
     }
 
     /**
@@ -49,27 +47,26 @@ public class HeapSort {
      * heap order, swap the parent with the element. Continue until the element
      * is in the correct location.
      *
-     * @param arr the array that the element is in.
      * @param i   the location in the array of the element.
      * @param n   furthest point from which a value bubbles up
      */
-    private static void bubbleUp(Integer[] arr, int i, int n) {
+    private void bubbleUp(int i, int n) {
 
         int child;
         int tmp;
 
-        for (tmp = arr[i]; leftChild(i) < n; i = child) {
+        for (tmp = getArray()[i]; leftChild(i) < n; i = child) {
 
             child = leftChild(i);
 
-            if (child != n - 1 && arr[child] < arr[child + 1])
+            if (child != n - 1 && getArray()[child] < getArray()[child + 1])
                 child++;
-            if (tmp < arr[child])
-                arr[i] = arr[child];
+            if (tmp < getArray()[child])
+                getArray()[i] = getArray()[child];
             else
                 break;
         }
-        arr[i] = tmp;
+        getArray()[i] = tmp;
     }
 
     /**
@@ -77,11 +74,11 @@ public class HeapSort {
      *
      * @param arr the array that is heapified.
      */
-    private static void buildHeap(Integer[] arr) {
+    private void buildHeap() {
 
         /* Orders each element in a max heap. */
-        for (int i = arr.length / 2 - 1; i >= 0; i--)
-            bubbleUp(arr, i, arr.length);
+        for (int i = getArray().length / 2 - 1; i >= 0; i--)
+            bubbleUp(i, getArray().length);
     }
 
     /**

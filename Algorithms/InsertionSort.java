@@ -3,24 +3,25 @@
  * Name : Kameron Damaska
  * ID   : krd42
  * Date : 11/28/2016 */
+public class InsertionSort extends Sort {
 
-public class InsertionSort {
+    public InsertionSort(Integer[] arr) {
+        super(arr);
+    }
 
-    /* Sorts an Integer array using insertion sort.
-     *
-     * @param arr the array being sorted.
-     * @return    the sorted array.
+    /** 
+     * Sorts an Integer array using insertion sort.
      * */
-    public static Integer[] sort(Integer[] arr) {
+    public void sort() {
 
         /* The item that needs to be inserted */
         int key;
 
         /* Sorts the entire array, first value is sorted. */
-        for (int j = 1; j < arr.length; j++) {
+        for (int j = 1; j < getArray().length; j++) {
 
             /* The next unsorted value */
-            key = arr[j];
+            key = getArray()[j];
 
             /* Color at arr[j] */
 
@@ -28,18 +29,17 @@ public class InsertionSort {
             int i;
 
             /* Sorts the array from right to left */
-            for (i = j - 1; (i >= 0) && (arr[i] > key); i--) {
-                arr[i + 1] = arr[i];
+            for (i = j - 1; (i >= 0) && (getArray()[i] > key); i--) {
+                getArray()[i + 1] = getArray()[i];
 
                 /* Color at arr[i + 1] */
             }
 
-            arr[i + 1] = key;
+            getArray()[i + 1] = key;
 
             /* Color at arr[i + 1] */
         }
 
-        return arr;
     }
 
 }

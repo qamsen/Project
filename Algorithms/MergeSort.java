@@ -3,14 +3,10 @@
  * Name : Kameron Damaska
  * ID   : krd42
  * Date : 12/1/2016 */
+public class MergeSort extends Sort {
 
-import java.util.Arrays;
-
-public class MergeSort {
-
-    public static void main(String[] args) {
-        Integer[] a = {7, 4, 5, 6, 3, 1, 8, 2};
-        sort(a);
+    public MergeSort(Integer[] arr) {
+        super(arr);
     }
 
     /**
@@ -18,26 +14,23 @@ public class MergeSort {
      *
      * @param a the array being sorted.
      */
-    public static Integer[] sort(Integer[] a) {
+    public void sort() {
 
         /* A temporary array for storing sorted values. */
-        Integer[] tmp = new Integer[a.length];
+        Integer[] tmp = new Integer[getArray().length];
 
         /* Initializes the recursive merge sort */
-        sort(a, tmp, 0, a.length - 1);
-
-        return a;
+        sort(tmp, 0, getArray().length - 1);
     }
 
     /**
      * Recursively sorts the array by dividing it into subarrays.
      *
-     * @param a     the array being sorted.
      * @param tmp   array for storing values while sorting.
      * @param left  index of left side of array.
      * @param right index of righ side of array.
      **/
-    public static void sort(Integer[] a, Integer[] tmp, int left, int right) {
+    private void sort(Integer[] tmp, int left, int right) {
 
         /* Continues until using subarray lengh 1 */
         if (left < right) {
@@ -45,13 +38,13 @@ public class MergeSort {
             int center = (left + right) / 2;
 
             /* Sorts the left half of the array */
-            sort(a, tmp, left, center);
+            sort(tmp, left, center);
 
             /* Sorts the right half of the array */
-            sort(a, tmp, center + 1, right);
+            sort(tmp, center + 1, right);
 
             /* Merges the two subarrays */
-            merge(a, tmp, left, center + 1, right);
+            merge(tmp, left, center + 1, right);
         }
 
     }
@@ -59,14 +52,12 @@ public class MergeSort {
     /**
      * Merges two subarrays together.
      *
-     * @param a     the array being sorted.
      * @param tmp   the temporary array used for merging.
      * @param left  the start of the left subarray.
      * @param right the start of the right subarray.
      * @param end   the end of the subarrays.
      */
-    private static void merge(Integer[] a, Integer[] tmp,
-                            int left, int right, int end) {
+    private void merge(Integer[] tmp, int left, int right, int end) {
 
         /* End of the left subarray */
         int leftEnd = right - 1;
@@ -81,23 +72,23 @@ public class MergeSort {
         /* Merges the subarrays in sorted order */
         while (left <= leftEnd && right <= end) {
 
-            if (a[left] <= a[right])
-                tmp[k++] = a[left++];
-            else tmp[k++] = a[right++];
+            if (getArray()[left] <= getArray()[right])
+                tmp[k++] = getArray()[left++];
+            else tmp[k++] = getArray()[right++];
         }
 
         /* Finishes the merge if the left subarray has largest values */
         while (left <= leftEnd)
-            tmp[k++] = a[left++];
+            tmp[k++] = getArray()[left++];
 
         /* Finishes the merge if the right subarray has largest values */
         while (right <= end)
-            tmp[k++] = a[right++];
+            tmp[k++] = getArray()[right++];
 
         /* Copies tmp back to the array */
         for (int i = 0; i < num; i++, end--) {
-            a[end] = tmp[end];
-            System.out.println(Arrays.toString(a));
+            getArray()[end] = tmp[end];
+            /* System.out.println(Arrays.toString(getArray())); */
         }
     }
 
