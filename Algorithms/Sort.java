@@ -4,6 +4,8 @@
  * Name : Kameron Damaska
  * ID   : krd42
  * Date : 12/5/2016 */
+import java.lang.Thread;
+
 public abstract class Sort {
 
     /* The array being sorted. */
@@ -71,10 +73,13 @@ public abstract class Sort {
         return isSorted;
     }
 
-    /* public void updateGraph() {
-     *     graph.setArray(getArray());
-     *     graph.graphArray();
-     *     Thread.sleep(100);
-     * } */
+     public void updateGraph() {
+          graph.setArray(getArray());
+          graph.graphArray();
+          try{
+              Thread.sleep(200);
+          }
+          catch(InterruptedException e){}
+      }
 
 }
