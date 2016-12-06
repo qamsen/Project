@@ -1,5 +1,7 @@
+import java.util.Arrays;
+
 /* Performs Heap Sort on an Integer array.
- * 
+ *
  * Name: Kameron Damaska
  * ID: krd42
  * Date: 11/29/2016 */
@@ -61,8 +63,10 @@ public class HeapSort extends Sort {
 
             if (child != n - 1 && getArray()[child] < getArray()[child + 1])
                 child++;
-            if (tmp < getArray()[child])
+            if (tmp < getArray()[child]) {
                 getArray()[i] = getArray()[child];
+                System.out.println(Arrays.toString(getArray()));
+            }
             else
                 break;
         }

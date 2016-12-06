@@ -12,14 +12,20 @@ public abstract class Sort {
     /* Checks whether the array is sorted */
     private boolean isSorted;
 
+    /* private GraphArray graph; */
+
     /**
      * Constructs the Sort object.
      *
-     * @param arr the array of the sorting algorithm.
+     * @param arr   the array of the sorting algorithm.
+     * @param graph the visualize representation of the graph.
      */
     public Sort(Integer[] arr) {
+
         this.arr = arr;
         this.isSorted = isSorted(arr);
+
+        /* this.graph = new GraphArray(arr); */
     }
 
     /* Sorts the array */
@@ -64,5 +70,11 @@ public abstract class Sort {
 
         return isSorted;
     }
+
+    /* public void updateGraph() {
+     *     graph.setArray(getArray());
+     *     graph.graphArray();
+     *     Thread.sleep(100);
+     * } */
 
 }

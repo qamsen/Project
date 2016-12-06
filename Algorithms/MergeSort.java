@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 /* Performs merge sort on an Integer array.
  *
  * Name : Kameron Damaska
@@ -88,7 +90,8 @@ public class MergeSort extends Sort {
         /* Copies tmp back to the array */
         for (int i = 0; i < num; i++, end--) {
             getArray()[end] = tmp[end];
-            /* System.out.println(Arrays.toString(getArray())); */
+            /* updateGraph(); */
+            System.out.println(Arrays.toString(getArray()));
         }
     }
 

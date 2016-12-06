@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 /* Performs insertion sort on an Integer array.
  *
  * Name : Kameron Damaska
@@ -23,21 +25,17 @@ public class InsertionSort extends Sort {
             /* The next unsorted value */
             key = getArray()[j];
 
-            /* Color at arr[j] */
-
             /* Index through the unsorted array. */
             int i;
 
             /* Sorts the array from right to left */
             for (i = j - 1; (i >= 0) && (getArray()[i] > key); i--) {
                 getArray()[i + 1] = getArray()[i];
-
-                /* Color at arr[i + 1] */
+                System.out.println(Arrays.toString(getArray()));
             }
 
             getArray()[i + 1] = key;
-
-            /* Color at arr[i + 1] */
+            System.out.println(Arrays.toString(getArray()));
         }
 
     }
