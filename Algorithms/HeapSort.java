@@ -61,7 +61,7 @@ public class HeapSort extends Sort {
 
             child = leftChild(i);
 
-            if (child != n - 1 && getArray()[child] < getArray()[child + 1])
+            if ((child != n - 1) && (getArray()[child] < getArray()[child + 1]))
                 child++;
             if (tmp < getArray()[child]) {
                 getArray()[i] = getArray()[child];
@@ -75,8 +75,6 @@ public class HeapSort extends Sort {
 
     /**
      * Max heapifies a given array.
-     *
-     * @param arr the array that is heapified.
      */
     private void buildHeap() {
 

@@ -65,8 +65,8 @@ public abstract class Sort {
 
         boolean isSorted = false;
 
-        for(int i = 1; i < arr.length && isSorted == false; i++)
-            isSorted = !(arr[i - 1] > arr[i]);
+        for(int i = 1; i < arr.length && isSorted == true; i++)
+            isSorted = arr[i - 1] <= arr[i];
 
         return isSorted;
     }
