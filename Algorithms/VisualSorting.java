@@ -1,5 +1,3 @@
-import Algorithms.*;
-
 public class VisualSorting {
 
     public static void main(String[] args) {
@@ -50,19 +48,19 @@ public class VisualSorting {
 
         /* Runs the given sorting algorithm */
         switch (sortName) {
-            case 1: sortName = "mergesort";
+            case "mergesort":
                     MergeSort sort = new MergeSort(arr);
                     sort.getSortedArray();
-            case 2: sortName = "heapsort";
+            case "heapsort":
                     HeapSort sort = new HeapSort(arr);
                     sort.getSortedArray();
-            case 3: sortName = "insertionsort";
+            case "insertionsort":
                     InsertionSort sort = new InsertionSort(arr);
                     sort.getSortedArray();
-            case 4: sortName = "quicksort";
+            case "quicksort":
                     QuickSort sort = new QuickSort(arr);
                     sort.getSortedArray();
-            case 5: sortName = "shellsort";
+            case "shellsort":
                     ShellSort sort = new ShellSort(arr);
                     sort.getSortedArray();
         }
