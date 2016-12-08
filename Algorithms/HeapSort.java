@@ -1,4 +1,11 @@
+package com.company;
+
+import com.company.Sort;
+
 import java.util.Arrays;
+//package Algorithms;
+
+
 
 /* Performs Heap Sort on an Integer array.
  *
@@ -14,11 +21,13 @@ public class HeapSort extends Sort {
     /**
      * Sorts the array using HeapSort.
      */
+    GraphArray heapGraph = new GraphArray(getArray());
     public void sort() {
 
         /* Turns the array into a max heap */
+        heapGraph.graph();
         buildHeap();
-
+        heapGraph.graph();
         /* Starts at the last value in the heap */
         for (int i = getArray().length - 1; i > 0; i--) {
 
@@ -65,7 +74,9 @@ public class HeapSort extends Sort {
                 child++;
             if (tmp < getArray()[child]) {
                 getArray()[i] = getArray()[child];
-                System.out.println(Arrays.toString(getArray()));
+
+                //System.out.println(Arrays.toString(getArray()));
+                heapGraph.graph();
             }
             else
                 break;

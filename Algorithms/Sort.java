@@ -1,3 +1,4 @@
+package com.company;
 /**
  * Abstract class for all sorting algorithms.
  *
@@ -73,13 +74,13 @@ public abstract class Sort {
         return isSorted;
     }
 
-     public void updateGraph() {
+/*     public void updateGraph() {
           graph.setArray(getArray());
           graph.graphArray();
           try{
               Thread.sleep(200);
           }
           catch(InterruptedException e){}
-      }
+      }*/
 
 }

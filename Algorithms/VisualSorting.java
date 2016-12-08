@@ -1,29 +1,42 @@
+package com.company;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.lang.String;
+import java.util.List;
+import java.lang.Integer;
+
+
 public class VisualSorting {
 
     public static void main(String[] args) {
 
         /* Checks to make sure the inputs are valid */
-        validInputs = false;
-
-        /* The name of the sorting algorithm the user input */
-        String sortName;
+        boolean validSort = false;
+        boolean validInputs = false;
+        String sortName = "";
 
         /* Array length the user input */
-        int arrayLength;
+        int arrayLength = 0;
 
         /* Checks the sorting algorithm name */
         try {
-            validInputs = isValidInput(args[0]);
+            validSort = isValidSort(args[0]);
         }
-        catch (NullPointerException e) {
+        catch (ArrayIndexOutOfBoundsException e) {
         }
 
         /* Checks that the array length is valid */
         try {
-            arrayLength = String.parseInt(args[1]);
-            validInputs = true;
+            arrayLength = Integer.parseInt(args[1]);
+            if (validSort) {
+                validInputs = true;
+                sortName = args[0];
+            }
         }
-        catch (NullPointerException e || NumberFormatException f) {
+        catch (ArrayIndexOutOfBoundsException e) {
+        }
+        catch (NumberFormatException e) {
         }
 
         /* Runs program when an algorithm and array length is supplied */
@@ -49,20 +62,25 @@ public class VisualSorting {
         /* Runs the given sorting algorithm */
         switch (sortName) {
             case "mergesort":
-                    MergeSort sort = new MergeSort(arr);
-                    sort.getSortedArray();
+                    MergeSort mergeSort = new MergeSort(arr);
+                    mergeSort.getSortedArray();
+                    break;
             case "heapsort":
-                    HeapSort sort = new HeapSort(arr);
-                    sort.getSortedArray();
+                    HeapSort heapSort = new HeapSort(arr);
+                    heapSort.getSortedArray();
+                    break;
             case "insertionsort":
-                    InsertionSort sort = new InsertionSort(arr);
-                    sort.getSortedArray();
+                    InsertionSort insertionSort = new InsertionSort(arr);
+                    insertionSort.getSortedArray();
+                    break;
             case "quicksort":
-                    QuickSort sort = new QuickSort(arr);
-                    sort.getSortedArray();
+                    QuickSort quickSort = new QuickSort(arr);
+                    quickSort.getSortedArray();
+                    break;
             case "shellsort":
-                    ShellSort sort = new ShellSort(arr);
-                    sort.getSortedArray();
+                    ShellSort shellSort = new ShellSort(arr);
+                    shellSort.getSortedArray();
+                    break;
         }
     }
 
@@ -86,7 +104,7 @@ public class VisualSorting {
      * @param arrayLength the length of the random array.
      * @return            a randomly sorted array.
      */
-     * public static Integer[] randomArray(int arrayLength) {
+     public static Integer[] randomArray(int arrayLength) {
 
         Integer[] arr = new Integer[arrayLength];
 
@@ -95,7 +113,10 @@ public class VisualSorting {
         }
 
         /* Randomizes the contents of the array */
-        return Collections.shuffle(arr);
+//        List<Integer> solution = new ArrayList<>();
+//        solution = Arrays.asList(arr);
+        Collections.shuffle(Arrays.asList(arr));
+        return arr;
     }
 
     /**
@@ -108,8 +129,8 @@ public class VisualSorting {
     private static boolean isValidSort(String sortName) {
 
         /* The valid sorting algorithms in this program */
-        List validSorts = Arrays.toList(
-                {"mergesort", "heapsort", "insertionsort", "quicksort", "shellsort"});
+        List validSorts = Arrays.asList(
+                "mergesort", "heapsort", "insertionsort", "quicksort", "shellsort");
 
         /* Removes white space and decapitalizes the String */
         sortName = parseString(sortName);

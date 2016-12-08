@@ -2,6 +2,8 @@
  * Created by Drew on 12/5/2016.
  */
 
+package com.company;
+import java.lang.Thread;
 
 import java.util.Arrays;
 import java.util.function.DoubleToIntFunction;
@@ -46,7 +48,7 @@ public class GraphArray extends JPanel
         //Integer[] a = {7, 4, 5, 6, 3, 1, 8, 2};
         XYSeries plotData = new XYSeries("List");
         for (int i = 0; i < a.length; i++) {
-            plotData.add((double) a[i], (double) i);
+            plotData.add((double) a[i], (double) i+1);
         }
 
         XYSeriesCollection dataset = new XYSeriesCollection();
@@ -81,16 +83,32 @@ public class GraphArray extends JPanel
         frame.getContentPane().add(new GraphArray(arr), BorderLayout.CENTER);
         frame.pack();
         frame.setVisible(true);
+        int sleepTime = 4000/arr.length;
+
+        try
+        {
+            Thread.sleep(sleepTime);
+        }
+        catch(InterruptedException e){}
+
     }
 
-    public void updateGraph(Integer[] a)
+/*    public void updateGraph(Integer[] a)
     {
         //JFrame frame = new JFrame("Chart One");
-
+        int sleepTime = 4000/a.length;
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         frame.getContentPane().add(new GraphArray(a), BorderLayout.CENTER);
         frame.pack();
         frame.setVisible(true);
-    }
+
+        try
+        {
+
+            Thread.sleep(sleepTime);
+        }
+        catch(InterruptedException e){}
+
+    }*/
 }

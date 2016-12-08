@@ -3,6 +3,8 @@
  * Name : Drew Borneman
  * ID   : awb79
  * Date : 12/4/2016 */
+
+package com.company;
 public class QuickSort extends Sort{
 
     public QuickSort(Integer[] arr) {
@@ -14,10 +16,13 @@ public class QuickSort extends Sort{
      *
      * @param a the array being sorted.
      */
+    GraphArray quickGraph = new GraphArray(getArray());
+
     public void sort() {
 
         /* Initializes recursive quicksort */
         sort(0, getArray().length - 1);
+        quickGraph.graph();
     }
 
     /**
@@ -52,10 +57,13 @@ public class QuickSort extends Sort{
         for (int i = left; i < right; i++) {
             if (getArray()[i] <= pivot) {
                 swap(pivotIndex, i);
+                quickGraph.graph();
                 pivotIndex++;
             }
         }
         swap(pivotIndex, right);
+        quickGraph.graph();
+
         return pivotIndex;
     }
 

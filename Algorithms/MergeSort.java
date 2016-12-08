@@ -1,3 +1,5 @@
+package com.company;
+
 import java.util.Arrays;
 
 /* Performs merge sort on an Integer array.
@@ -16,12 +18,14 @@ public class MergeSort extends Sort {
      *
      * @param a the array being sorted.
      */
+    GraphArray mergeGraph = new GraphArray(getArray());
     public void sort() {
 
         /* A temporary array for storing sorted values. */
         Integer[] tmp = new Integer[getArray().length];
 
         /* Initializes the recursive merge sort */
+        mergeGraph.graph();
         sort(tmp, 0, getArray().length - 1);
     }
 
@@ -91,7 +95,8 @@ public class MergeSort extends Sort {
         for (int i = 0; i < num; i++, end--) {
             getArray()[end] = tmp[end];
             /* updateGraph(); */
-            System.out.println(Arrays.toString(getArray()));
+           //System.out.println(Arrays.toString(getArray()));
+            mergeGraph.graph();
         }
     }
 
