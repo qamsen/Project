@@ -1,11 +1,9 @@
-package com.company;
-
 import java.util.Arrays;
 import java.util.Collections;
 import java.lang.String;
 import java.util.List;
 import java.lang.Integer;
-
+import sort.*;
 
 public class VisualSorting {
 
@@ -63,7 +61,7 @@ public class VisualSorting {
         switch (sortName) {
             case "mergesort":
                     MergeSort mergeSort = new MergeSort(arr);
-                    mergeSort.getSortedArray();
+                    mergeSort.graph();
                     break;
             case "heapsort":
                     HeapSort heapSort = new HeapSort(arr);
@@ -109,7 +107,7 @@ public class VisualSorting {
         Integer[] arr = new Integer[arrayLength];
 
         for (int i = 0; i < arr.length; i++) {
-            arr[i] = i;
+            arr[i] = i + 1;
         }
 
         /* Randomizes the contents of the array */

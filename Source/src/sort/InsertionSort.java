@@ -1,5 +1,4 @@
-package com.company;
-
+package sort;
 import java.util.Arrays;
 
 /* Performs insertion sort on an Integer array.
@@ -35,12 +34,12 @@ public class InsertionSort extends Sort {
             for (i = j - 1; (i >= 0) && (getArray()[i] > key); i--) {
                 getArray()[i + 1] = getArray()[i];
                 //System.out.println(Arrays.toString(getArray()));
-                insertionGraph.graph();
+                // insertionGraph.graph();
             }
 
             getArray()[i + 1] = key;
             //System.out.println(Arrays.toString(getArray()));
-            insertionGraph.graph();
+            // insertionGraph.graph();
         }
 
     }

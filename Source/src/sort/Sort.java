@@ -1,4 +1,5 @@
-package com.company;
+package sort;
+
 /**
  * Abstract class for all sorting algorithms.
  *
@@ -15,7 +16,8 @@ public abstract class Sort {
     /* Checks whether the array is sorted */
     private boolean isSorted;
 
-    /* private GraphArray graph; */
+    /* Graphic representation of the array */
+    private GraphArray graph;
 
     /**
      * Constructs the Sort object.
@@ -59,6 +61,15 @@ public abstract class Sort {
 
     }
 
+    public void graph() {
+        graph = new GraphArray(getArray());
+        getSortedArray();
+    }
+
+    public GraphArray getGraph() {
+        return graph;
+    }
+
     /**
      * Returns whether the given array is sorted.
      *
@@ -73,14 +84,5 @@ public abstract class Sort {
 
         return isSorted;
     }
-
-/*     public void updateGraph() {
-          graph.setArray(getArray());
-          graph.graphArray();
-          try{
-              Thread.sleep(200);
-          }
-          catch(InterruptedException e){}
-      }*/
 
 }

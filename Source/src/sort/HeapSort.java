@@ -1,7 +1,4 @@
-package com.company;
-
-import com.company.Sort;
-
+package sort;
 import java.util.Arrays;
 //package Algorithms;
 
@@ -25,9 +22,9 @@ public class HeapSort extends Sort {
     public void sort() {
 
         /* Turns the array into a max heap */
-        heapGraph.graph();
+        // heapGraph.graph();
         buildHeap();
-        heapGraph.graph();
+        // heapGraph.graph();
         /* Starts at the last value in the heap */
         for (int i = getArray().length - 1; i > 0; i--) {
 
@@ -76,7 +73,7 @@ public class HeapSort extends Sort {
                 getArray()[i] = getArray()[child];
 
                 //System.out.println(Arrays.toString(getArray()));
-                heapGraph.graph();
+                // heapGraph.graph();
             }
             else
                 break;

@@ -1,4 +1,4 @@
-package com.company;
+package sort;
 import java.util.Arrays;
 //package Algorithms;
 
@@ -27,7 +27,7 @@ public class ShellSort extends Sort {
         int temp;
         int j;
 
-        shellGraph.graph();
+        // shellGraph.graph();
 
         while(gap > 0){
 
@@ -43,7 +43,7 @@ public class ShellSort extends Sort {
                 }
 
             getArray()[j] = temp;
-                shellGraph.graph();
+                // shellGraph.graph();
             }
 
             gap = gap/2;    //reduce the gap
