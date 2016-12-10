@@ -30,8 +30,6 @@ import org.jfree.ui.TextAnchor;
 
 import javax.swing.*;
 
-
-
 public class GraphArray extends JPanel {
 
     private JFrame frame;
@@ -84,7 +82,7 @@ public class GraphArray extends JPanel {
     	updateXYSeries(x, y);
 
         
-        int sleepTime = 4000 / ARR_LENGTH;
+        int sleepTime = 1000 / ARR_LENGTH;
 
         try {
             Thread.sleep(sleepTime);

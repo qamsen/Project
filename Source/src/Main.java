@@ -1,50 +1,24 @@
 import java.util.Arrays;
+
 import java.util.Collections;
-import java.lang.String;
+import java.lang.*;
 import java.util.List;
-import java.lang.Integer;
 import sort.*;
 
-public class VisualSorting {
+public class Main {
 
     public static void main(String[] args) {
-
-        /* Checks to make sure the inputs are valid */
-        boolean validSort = false;
-        boolean validInputs = false;
-        String sortName = "";
-
-        /* Array length the user input */
-        int arrayLength = 0;
-
-        /* Checks the sorting algorithm name */
-        try {
-            validSort = isValidSort(args[0]);
-        }
-        catch (ArrayIndexOutOfBoundsException e) {
-        }
-
-        /* Checks that the array length is valid */
-        try {
-            arrayLength = Integer.parseInt(args[1]);
-            if (validSort) {
-                validInputs = true;
-                sortName = args[0];
-            }
-        }
-        catch (ArrayIndexOutOfBoundsException e) {
-        }
-        catch (NumberFormatException e) {
-        }
-
-        /* Runs program when an algorithm and array length is supplied */
-        if (validInputs) {
-            launchProgram(sortName, arrayLength);
-        }
-
-        /* Error catching */
-        else
-            System.out.println("Please give valid inputs");
+    	Integer[] arr = randomArray(10);
+    	Integer[] arr2 = randomArray(50);
+    	Integer[] arr3 = randomArray(100);
+    	Sort[] sorts = {
+    			new MergeSort(arr),
+    			new MergeSort(arr2),
+    			new MergeSort(arr3)
+    	};
+    	
+    	for (Sort s : sorts)
+    		s.graph();
     }
 
     /**
@@ -65,19 +39,19 @@ public class VisualSorting {
                     break;
             case "heapsort":
                     HeapSort heapSort = new HeapSort(arr);
-                    heapSort.getSortedArray();
+                    heapSort.graph();
                     break;
             case "insertionsort":
                     InsertionSort insertionSort = new InsertionSort(arr);
-                    insertionSort.getSortedArray();
+                    insertionSort.graph();
                     break;
             case "quicksort":
                     QuickSort quickSort = new QuickSort(arr);
-                    quickSort.getSortedArray();
+                    quickSort.graph();
                     break;
             case "shellsort":
                     ShellSort shellSort = new ShellSort(arr);
-                    shellSort.getSortedArray();
+                    shellSort.graph();
                     break;
         }
     }

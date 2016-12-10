@@ -18,13 +18,10 @@ public class HeapSort extends Sort {
     /**
      * Sorts the array using HeapSort.
      */
-    GraphArray heapGraph = new GraphArray(getArray());
     public void sort() {
 
         /* Turns the array into a max heap */
-        // heapGraph.graph();
         buildHeap();
-        // heapGraph.graph();
         /* Starts at the last value in the heap */
         for (int i = getArray().length - 1; i > 0; i--) {
 
@@ -47,7 +44,9 @@ public class HeapSort extends Sort {
 
         int tmp = getArray()[i1];
         getArray()[i1] = getArray()[i2];
+        getGraph().update(i1, getArray()[i1]);
         getArray()[i2] = tmp;
+        getGraph().update(i2, getArray()[i2]);
     }
 
     /**
@@ -71,14 +70,13 @@ public class HeapSort extends Sort {
                 child++;
             if (tmp < getArray()[child]) {
                 getArray()[i] = getArray()[child];
-
-                //System.out.println(Arrays.toString(getArray()));
-                // heapGraph.graph();
+                getGraph().update(i, getArray()[i]);
             }
             else
                 break;
         }
         getArray()[i] = tmp;
+        getGraph().update(i, getArray()[i]);
     }
 
     /**

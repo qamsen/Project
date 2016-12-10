@@ -12,10 +12,9 @@ public class InsertionSort extends Sort {
         super(arr);
     }
 
-    /** 
+    /**
      * Sorts an Integer array using insertion sort.
      * */
-    GraphArray insertionGraph = new GraphArray(getArray());
     public void sort() {
 
         /* The item that needs to be inserted */
@@ -33,13 +32,11 @@ public class InsertionSort extends Sort {
             /* Sorts the array from right to left */
             for (i = j - 1; (i >= 0) && (getArray()[i] > key); i--) {
                 getArray()[i + 1] = getArray()[i];
-                //System.out.println(Arrays.toString(getArray()));
-                // insertionGraph.graph();
+                getGraph().update(i + 1, getArray()[i + 1]);
             }
 
             getArray()[i + 1] = key;
-            //System.out.println(Arrays.toString(getArray()));
-            // insertionGraph.graph();
+            getGraph().update((i + 1), (getArray()[i + 1]));
         }
 
     }

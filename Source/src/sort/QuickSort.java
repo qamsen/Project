@@ -15,13 +15,10 @@ public class QuickSort extends Sort{
      *
      * @param a the array being sorted.
      */
-    GraphArray quickGraph = new GraphArray(getArray());
-
     public void sort() {
 
         /* Initializes recursive quicksort */
         sort(0, getArray().length - 1);
-        // quickGraph.graph();
     }
 
     /**
@@ -35,11 +32,9 @@ public class QuickSort extends Sort{
         int pivotIndex;
         if(left < right) {
             pivotIndex = partition(left, right);      //calculate the pivot and partition the array
-            //System.out.println(left + ", "+ pivotIndex + ", " + right);
             sort(left, pivotIndex - 1);             //recursively call the two partitioned sides of the array
             sort(pivotIndex + 1, right);
         }
-
 
     }
 
@@ -56,12 +51,10 @@ public class QuickSort extends Sort{
         for (int i = left; i < right; i++) {
             if (getArray()[i] <= pivot) {
                 swap(pivotIndex, i);
-                // quickGraph.graph();
                 pivotIndex++;
             }
         }
         swap(pivotIndex, right);
-        // quickGraph.graph();
 
         return pivotIndex;
     }
@@ -75,8 +68,9 @@ public class QuickSort extends Sort{
         int temp = 0;   //temporary value holder
         temp = getArray()[i];
         getArray()[i] = getArray()[j];
+        getGraph().update(i, getArray()[i]);
         getArray()[j] = temp;
-
+        getGraph().update(j, getArray()[j]);
     }
 
 }

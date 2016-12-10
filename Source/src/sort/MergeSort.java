@@ -23,7 +23,6 @@ public class MergeSort extends Sort {
         Integer[] tmp = new Integer[getArray().length];
 
         /* Initializes the recursive merge sort */
-        // mergeGraph.graph();
         sort(tmp, 0, getArray().length - 1);
     }
 

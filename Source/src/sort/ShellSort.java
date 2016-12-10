@@ -27,8 +27,6 @@ public class ShellSort extends Sort {
         int temp;
         int j;
 
-        // shellGraph.graph();
-
         while(gap > 0){
 
             for(int i = gap; i<n;i++){
@@ -37,13 +35,14 @@ public class ShellSort extends Sort {
 
                 for(j = i; (j>= gap)&&(getArray()[j-gap] > temp); j -= gap){
 
-                    getArray()[j] =getArray()[j-gap];
+                    getArray()[j] = getArray()[j-gap];
+                    getGraph().update(j, getArray()[j]);
 
 
                 }
 
             getArray()[j] = temp;
-                // shellGraph.graph();
+            getGraph().update(j, getArray()[j]);
             }
 
             gap = gap/2;    //reduce the gap
@@ -51,12 +50,5 @@ public class ShellSort extends Sort {
         }
 
     }
-
-    /**
-     * Swaps the values in an array at two giving indeces.
-     *
-     * @param i1 the index of a value to be swapped.
-     * @param i2 the index of a value to be swapped.
-     */
 
 }

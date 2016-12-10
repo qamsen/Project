@@ -8,7 +8,7 @@ package sort;
  * Date : 12/5/2016 */
 import java.lang.Thread;
 
-public abstract class Sort {
+public abstract class Sort implements Runnable {
 
     /* The array being sorted. */
     private Integer[] arr;
@@ -50,7 +50,7 @@ public abstract class Sort {
      *
      * @return the sorted array.
      */
-    public Integer[] getSortedArray() {
+    public Integer[] sortArray() {
 
         /* Sorts array if not already sorted */
         if (!isSorted) {
@@ -63,11 +63,17 @@ public abstract class Sort {
 
     public void graph() {
         graph = new GraphArray(getArray());
-        getSortedArray();
+        sortArray();
     }
 
     public GraphArray getGraph() {
         return graph;
+    }
+    
+    public void run() {
+    	if (graph == null)
+    		graph = new GraphArray(getArray());
+    	sortArray();
     }
 
     /**
