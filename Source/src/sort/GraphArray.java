@@ -1,49 +1,32 @@
-package sort;
+package src.sort;
 /**
  * Created by Drew on 12/5/2016.
  */
 
+import java.awt.*;
 import java.lang.Thread;
 
-import java.util.Arrays;
-import java.util.function.DoubleToIntFunction;
-
-import javax.swing.JFrame;
 import javax.swing.JPanel;
-import java.awt.BorderLayout;
-import java.awt.Paint;
-import java.awt.Color;
-import java.awt.BasicStroke;
 
 import org.jfree.chart.ChartFactory;
+import org.jfree.chart.renderer.xy.StandardXYBarPainter;
+import org.jfree.chart.renderer.xy.XYBarRenderer;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
-import org.jfree.chart.plot.IntervalMarker;
 import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.plot.XYPlot;
 import org.jfree.data.xy.*;
-import org.jfree.ui.ApplicationFrame;
-import org.jfree.ui.Layer;
-import org.jfree.ui.RectangleAnchor;
-import org.jfree.ui.RefineryUtilities;
-import org.jfree.ui.TextAnchor;
-
-import javax.swing.*;
 
 public class GraphArray extends JPanel {
 
-    private JFrame frame;
     private JFreeChart chart;
     private XYSeries plotData;
     private XYSeriesCollection dataset;
-    private ChartPanel chartPanel;
+    private volatile ChartPanel chartPanel;
     private final int ARR_LENGTH;
 
-    public GraphArray(Integer[] a) {
-        
-        this.ARR_LENGTH = a.length;
-        
-        frame = new JFrame("Chart One");
+    public GraphArray(Integer[] a, String name) {
+    	
+    	this.ARR_LENGTH = a.length;
 
         this.plotData = new XYSeries("List");
 
@@ -54,12 +37,14 @@ public class GraphArray extends JPanel {
         this.dataset = new XYSeriesCollection();
         dataset.addSeries(plotData);
 
+
+
         /* Creates the necessary bar chart */
-        this.chart = ChartFactory.createXYBarChart(
-                "Sort Visualization",
-                "Array Index",
+       this.chart = ChartFactory.createXYBarChart(
+                name,
+                "",
                 false,
-                "Array Value",
+                "",
                 dataset,
                 PlotOrientation.VERTICAL,
                 false,
@@ -67,17 +52,31 @@ public class GraphArray extends JPanel {
                 false);
 
         this.chartPanel = new ChartPanel(chart);
-        
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.getContentPane().add(chartPanel, BorderLayout.CENTER);
-        frame.pack();
-        frame.setVisible(true);
+        this.formatChart();
 
     }
 
+//formats the chart: sets bar color, removes effects, sets axis range, removes axis visibility
+
+
+    private void formatChart(){
+
+
+        XYBarRenderer renderer = (XYBarRenderer)chart.getXYPlot().getRenderer();
+        renderer.setSeriesPaint(0, Color.darkGray);
+        renderer.setDrawBarOutline(false);
+        renderer.setShadowVisible(false);
+        renderer.setBarPainter(new StandardXYBarPainter());
+        renderer.setSeriesItemLabelsVisible(0, false);
+        chart.getXYPlot().getRangeAxis().setVisible(false);
+        chart.getXYPlot().getDomainAxis().setVisible(false);
+        chart.getXYPlot().getRangeAxis().setRange(0, ARR_LENGTH);
+        chart.getXYPlot().getDomainAxis().setRange(-0.5, ARR_LENGTH-0.5);
+    }
+
     public void update(int x, int y) {
-        
-        updateXYSeries(x, y);
+    	
+    	updateXYSeries(x, y);
 
         
         int sleepTime = 1000 / ARR_LENGTH;
@@ -89,10 +88,31 @@ public class GraphArray extends JPanel {
         }     
         
     }
-    
-    private void updateXYSeries(int x, int y) {
-        int i = plotData.indexOf(x);
-        plotData.updateByIndex(i, y);
+
+    public ChartPanel getChartPanel(){
+        return chartPanel;
     }
     
+    private void updateXYSeries(int x, int y) {
+    	int i = plotData.indexOf(x);
+    	plotData.updateByIndex(i, y);
+    }
+    
+/*     public void graph()
+ *     {
+ * 
+ *         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+ *         frame.getContentPane().add(new GraphArray(arr), BorderLayout.CENTER);
+ *         frame.pack();
+ *         frame.setVisible(true);
+ *         int sleepTime = 4000/ ((arr.length) * (arr.length));
+ * 
+ *         try
+ *         {
+ *             Thread.sleep(0);
+ *         }
+ *         catch(InterruptedException e){}
+ * 
+ *     } */
+
 }
