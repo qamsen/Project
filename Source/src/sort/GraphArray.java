@@ -40,10 +40,10 @@ public class GraphArray extends JPanel {
     private final int ARR_LENGTH;
 
     public GraphArray(Integer[] a) {
-    	
-    	this.ARR_LENGTH = a.length;
-    	
-    	frame = new JFrame("Chart One");
+        
+        this.ARR_LENGTH = a.length;
+        
+        frame = new JFrame("Chart One");
 
         this.plotData = new XYSeries("List");
 
@@ -67,8 +67,6 @@ public class GraphArray extends JPanel {
                 false);
 
         this.chartPanel = new ChartPanel(chart);
-
-        add(chartPanel);
         
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().add(chartPanel, BorderLayout.CENTER);
@@ -78,8 +76,8 @@ public class GraphArray extends JPanel {
     }
 
     public void update(int x, int y) {
-    	
-    	updateXYSeries(x, y);
+        
+        updateXYSeries(x, y);
 
         
         int sleepTime = 1000 / ARR_LENGTH;
@@ -93,25 +91,8 @@ public class GraphArray extends JPanel {
     }
     
     private void updateXYSeries(int x, int y) {
-    	int i = plotData.indexOf(x);
-    	plotData.updateByIndex(i, y);
+        int i = plotData.indexOf(x);
+        plotData.updateByIndex(i, y);
     }
     
-/*     public void graph()
- *     {
- * 
- *         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
- *         frame.getContentPane().add(new GraphArray(arr), BorderLayout.CENTER);
- *         frame.pack();
- *         frame.setVisible(true);
- *         int sleepTime = 4000/ ((arr.length) * (arr.length));
- * 
- *         try
- *         {
- *             Thread.sleep(0);
- *         }
- *         catch(InterruptedException e){}
- * 
- *     } */
-
 }

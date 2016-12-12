@@ -71,9 +71,9 @@ public abstract class Sort implements Runnable {
     }
     
     public void run() {
-    	if (graph == null)
-    		graph = new GraphArray(getArray());
-    	sortArray();
+        if (graph == null)
+            graph = new GraphArray(getArray());
+        sortArray();
     }
 
     /**

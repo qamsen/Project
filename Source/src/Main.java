@@ -3,72 +3,55 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.lang.*;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 import sort.*;
 
 public class Main {
 
     public static void main(String[] args) {
-    	Integer[] arr = randomArray(10);
-    	Integer[] arr2 = randomArray(50);
-    	Integer[] arr3 = randomArray(100);
-    	Sort[] sorts = {
-    			new MergeSort(arr),
-    			new MergeSort(arr2),
-    			new MergeSort(arr3)
-    	};
     	
-    	for (Sort s : sorts)
-    		s.graph();
+        Integer[][] arrays = copyArrays(5, randomArray(100));
+
+        Sort[] sorts = {
+                new MergeSort(arrays[0]),
+                new HeapSort(arrays[1]),
+                new QuickSort(arrays[2]),
+                new InsertionSort(arrays[3]),
+                new ShellSort(arrays[4])
+        };
+        
+        Thread t1 = new Thread(sorts[0]);
+        Thread t2 = new Thread(sorts[1]);
+        Thread t3 = new Thread(sorts[2]);
+        Thread t4 = new Thread(sorts[3]);
+        Thread t5 = new Thread(sorts[4]);
+        t1.start();
+        t2.start();
+        t3.start();
+        t4.start();
+        t5.start();
+        
     }
-
-    /**
-     * Runs the sorting algorithm
-     *
-     * @param sortName    the name of the sorting algorithm being run.
-     * @param arrayLength the length of the array the program will sort.  */
-    public static void launchProgram(String sortName, int arrayLength) {
-
-        /* Creates a random array to be sorted */
-        Integer[] arr = randomArray(arrayLength);
-
-        /* Runs the given sorting algorithm */
-        switch (sortName) {
-            case "mergesort":
-                    MergeSort mergeSort = new MergeSort(arr);
-                    mergeSort.graph();
-                    break;
-            case "heapsort":
-                    HeapSort heapSort = new HeapSort(arr);
-                    heapSort.graph();
-                    break;
-            case "insertionsort":
-                    InsertionSort insertionSort = new InsertionSort(arr);
-                    insertionSort.graph();
-                    break;
-            case "quicksort":
-                    QuickSort quickSort = new QuickSort(arr);
-                    quickSort.graph();
-                    break;
-            case "shellsort":
-                    ShellSort shellSort = new ShellSort(arr);
-                    shellSort.graph();
-                    break;
-        }
+    
+    private static Integer[][] copyArrays(int nArrays, Integer[] arrCopied) {
+    	
+    	Integer[][] arrays = new Integer[nArrays][];
+    	
+    	for (int i = 0; i < nArrays; i++) {
+    		
+    		arrays[i] = new Integer[arrCopied.length];
+    		
+    		for (int j = 0; j < arrCopied.length; j++) {
+    			arrays[i][j] = arrCopied[j];
+    		}
+    		
+    	}
+    	
+    	return arrays;
     }
-
-    /**
-     * Removes all whitespaces in the String and decapitalizes it.
-     *
-     * @param s the String being stripped.
-     * @return  the String with no capital letters or whitespace.
-     */
-    public static String parseString(String s) {
-
-        s = s.toLowerCase();
-        s = s.replaceAll("\\s+","");
-
-        return s;
-    }
+    	
 
     /**
      * Returns a randomly sorted array.
@@ -84,30 +67,8 @@ public class Main {
             arr[i] = i + 1;
         }
 
-        /* Randomizes the contents of the array */
-//        List<Integer> solution = new ArrayList<>();
-//        solution = Arrays.asList(arr);
         Collections.shuffle(Arrays.asList(arr));
         return arr;
-    }
-
-    /**
-     * Checks to see if a String is the name of a sorting algorithm in this
-     * program.
-     *
-     * @param sortName the String that is being checked.
-     * @return         if the String is the name of a sorting algorithm.
-     */
-    private static boolean isValidSort(String sortName) {
-
-        /* The valid sorting algorithms in this program */
-        List validSorts = Arrays.asList(
-                "mergesort", "heapsort", "insertionsort", "quicksort", "shellsort");
-
-        /* Removes white space and decapitalizes the String */
-        sortName = parseString(sortName);
-
-        return validSorts.contains(sortName);
     }
 
 }
