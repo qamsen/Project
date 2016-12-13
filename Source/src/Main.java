@@ -21,27 +21,34 @@ public class Main {
         
         /* sorts = return value from GUI */
         
-        Integer[][] arrays = copyArrays(5, randomArray(100));
+        Integer[][] arrays = copyArrays(8, randomArray(1000));
         
         Sort[] sorts = {
-                new InsertionSort(arrays[4]),
-                new MergeSort(arrays[1]),
-                new QuickSort(arrays[2]),
-                new ShellSort(arrays[3]),
-                new HeapSort(arrays[0])
+                new HeapSort(arrays[5])
+
         };
-        
-        GridLayout manager = new GridLayout((sorts.length + 1) / 2, sorts.length/ 2);
-        
-        GraphFrame f = new GraphFrame(sorts, manager);
-        
-        f.setVisible(true);
-        
+
+        launchFrame(sorts);
+
         for (Sort s : sorts)
             (new Thread(s)).start();
-        
+
     }
-    
+
+    /**
+     * Creates the frame that shows shows sorting algorithm.
+     *
+     * @param sorts  the sorting algorithms being visualized.
+     */
+    private static void launchFrame(Sort[] sorts) {
+
+        GridLayout manager = new GridLayout((sorts.length + 1) / 2, 2);
+
+        /* A frame that visualizing all the sort arrays */
+        GraphFrame f = new GraphFrame(sorts, manager);
+        f.setVisible(true);
+    }
+
     /**
      * Copies a given array and returns an array containing the copies.
      * 
@@ -57,11 +64,7 @@ public class Main {
             
             arrays[i] = new Integer[arrCopied.length];
             
-            for (int j = 0; j < arrCopied.length; j++) {
-                arrays[i][j] = arrCopied[j];
-            }
-            
-        }
+            for (int j = 0; j < arrCopied.length; j++) { arrays[i][j] = arrCopied[j]; } }
         
         return arrays;
     }
