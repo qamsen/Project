@@ -1,8 +1,4 @@
-package src.sort;
-/**
- * Created by Drew on 12/5/2016.
- */
-
+package visual;
 import java.awt.*;
 import java.lang.Thread;
 
@@ -16,6 +12,10 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.xy.*;
 
+/**
+ * Created by Drew on 12/5/2016.
+ */
+
 public class GraphArray extends JPanel {
 
     private JFreeChart chart;
@@ -24,9 +24,15 @@ public class GraphArray extends JPanel {
     private volatile ChartPanel chartPanel;
     private final int ARR_LENGTH;
 
+    /**
+     * Initialzes the graph.
+     *
+     * @param a    the array being visualized.
+     * @param name the name of the graph.
+     */
     public GraphArray(Integer[] a, String name) {
-    	
-    	this.ARR_LENGTH = a.length;
+        
+        this.ARR_LENGTH = a.length;
 
         this.plotData = new XYSeries("List");
 
@@ -56,9 +62,9 @@ public class GraphArray extends JPanel {
 
     }
 
-//formats the chart: sets bar color, removes effects, sets axis range, removes axis visibility
-
-
+    /**
+     * Handles the visual aspect of the graph.
+     */
     private void formatChart(){
 
 
@@ -72,14 +78,23 @@ public class GraphArray extends JPanel {
         chart.getXYPlot().getDomainAxis().setVisible(false);
         chart.getXYPlot().getRangeAxis().setRange(0, ARR_LENGTH);
         chart.getXYPlot().getDomainAxis().setRange(-0.5, ARR_LENGTH-0.5);
+
     }
 
+    /**
+     * Updates the array and sleeps the program for a given time.
+     *
+     * @param x  the index at which the value is changed.
+     * @param y  the new value.
+     */
     public void update(int x, int y) {
-    	
-    	updateXYSeries(x, y);
-
+        
+        updateXYSeries(x, y);
         
         int sleepTime = 1000 / ARR_LENGTH;
+        
+        if (sleepTime == 0)
+            sleepTime = 1;
 
         try {
             Thread.sleep(sleepTime);
@@ -89,30 +104,24 @@ public class GraphArray extends JPanel {
         
     }
 
+    /**
+     * Returns the panel that the graph is visualized on.
+     *
+     * @return  the panel of the graph.
+     */
     public ChartPanel getChartPanel(){
         return chartPanel;
     }
     
+    /**
+     * Updates the data in the series.
+     *
+     * @param x  the index at which the value is changed.
+     * @param y  the new value.
+     */
     private void updateXYSeries(int x, int y) {
-    	int i = plotData.indexOf(x);
-    	plotData.updateByIndex(i, y);
+        int i = plotData.indexOf(x);
+        plotData.updateByIndex(i, y);
     }
     
-/*     public void graph()
- *     {
- * 
- *         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
- *         frame.getContentPane().add(new GraphArray(arr), BorderLayout.CENTER);
- *         frame.pack();
- *         frame.setVisible(true);
- *         int sleepTime = 4000/ ((arr.length) * (arr.length));
- * 
- *         try
- *         {
- *             Thread.sleep(0);
- *         }
- *         catch(InterruptedException e){}
- * 
- *     } */
-
 }

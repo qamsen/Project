@@ -1,5 +1,6 @@
-package com.company;
+package visual;
 import javax.swing.JFrame;
+import sort.*;
 import javax.swing.JPanel;
 import javax.swing.*;
 import java.awt.*;
@@ -7,9 +8,6 @@ import java.awt.event.*;
 import javax.swing.JCheckBox;
 import java.util.ArrayList;
 import java.lang.String;
-
-
-
 /**
  * Created by Drew on 12/9/2016.
  */
