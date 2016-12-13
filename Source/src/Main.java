@@ -1,57 +1,71 @@
 import java.util.Arrays;
 
 import java.util.Collections;
-import java.lang.*;
-import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
+import java.awt.GridLayout;
+import visual.*;
 import sort.*;
-
+/**
+ * The main method of our graphing project.
+ *
+ * Name: Kameron Damaska
+ * ID: krd42
+ * Date: 12/13/2016
+ */
 public class Main {
 
     public static void main(String[] args) {
-    	
+        
+        /* Launch GUI */
+        
+        /* arrays = return value from GUI */
+        
+        /* sorts = return value from GUI */
+        
         Integer[][] arrays = copyArrays(5, randomArray(100));
-
+        
         Sort[] sorts = {
-                new MergeSort(arrays[0]),
-                new HeapSort(arrays[1]),
+                new InsertionSort(arrays[4]),
+                new MergeSort(arrays[1]),
                 new QuickSort(arrays[2]),
-                new InsertionSort(arrays[3]),
-                new ShellSort(arrays[4])
+                new ShellSort(arrays[3]),
+                new HeapSort(arrays[0])
         };
         
-        Thread t1 = new Thread(sorts[0]);
-        Thread t2 = new Thread(sorts[1]);
-        Thread t3 = new Thread(sorts[2]);
-        Thread t4 = new Thread(sorts[3]);
-        Thread t5 = new Thread(sorts[4]);
-        t1.start();
-        t2.start();
-        t3.start();
-        t4.start();
-        t5.start();
+        GridLayout manager = new GridLayout((sorts.length + 1) / 2, sorts.length/ 2);
+        
+        GraphFrame f = new GraphFrame(sorts, manager);
+        
+        f.setVisible(true);
+        
+        for (Sort s : sorts)
+            (new Thread(s)).start();
         
     }
     
+    /**
+     * Copies a given array and returns an array containing the copies.
+     * 
+     * @param nArrays   number of arrays copied.
+     * @param arrCopied source array.
+     * @return          an array of the copied arrays.
+     */
     private static Integer[][] copyArrays(int nArrays, Integer[] arrCopied) {
-    	
-    	Integer[][] arrays = new Integer[nArrays][];
-    	
-    	for (int i = 0; i < nArrays; i++) {
-    		
-    		arrays[i] = new Integer[arrCopied.length];
-    		
-    		for (int j = 0; j < arrCopied.length; j++) {
-    			arrays[i][j] = arrCopied[j];
-    		}
-    		
-    	}
-    	
-    	return arrays;
+        
+        Integer[][] arrays = new Integer[nArrays][];
+        
+        for (int i = 0; i < nArrays; i++) {
+            
+            arrays[i] = new Integer[arrCopied.length];
+            
+            for (int j = 0; j < arrCopied.length; j++) {
+                arrays[i][j] = arrCopied[j];
+            }
+            
+        }
+        
+        return arrays;
     }
-    	
+        
 
     /**
      * Returns a randomly sorted array.
