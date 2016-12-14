@@ -1,4 +1,4 @@
-package sort;
+package src.sort;
 /* Performs quicksort on an Integer array.
  *
  * Name : Drew Borneman

@@ -1,6 +1,6 @@
-package visual;
+package src.visual;
 import javax.swing.JFrame;
-import sort.*;
+import src.sort.*;
 import javax.swing.JPanel;
 import javax.swing.*;
 import java.awt.*;
@@ -8,12 +8,38 @@ import java.awt.event.*;
 import javax.swing.JCheckBox;
 import java.util.ArrayList;
 import java.lang.String;
-/**
+import java.util.Arrays;
+import java.util.Collections;
+/*
  * Created by Drew on 12/9/2016.
  */
+
 public class gui extends WindowAdapter{
 
-    private static void createGUI(){
+    private Integer[] arr;
+    private Sort[] sort;
+    private int arraySize;
+    
+    public gui(){
+
+        //createGUI();
+        javax.swing.SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                createGUI();
+            }
+        });
+        
+        
+    }
+
+    public Sort[] getSortArray(){
+        return this.sort;
+    }
+    public int getArraySize(){
+        return this.arraySize;
+    }
+    
+    private void createGUI(){
         //gets the screen dimensions for scaling purposes
         //Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         //double xSize = screenSize.getWidth()/3;
@@ -66,42 +92,55 @@ public class gui extends WindowAdapter{
         startButtonPanel.add(startButton);
 
         startButton.addActionListener(new ActionListener(){
+
             public void actionPerformed(ActionEvent e){
 
                 Object[] sortArray;
                 ArrayList sortList = new ArrayList();
-                int sortCounter = 0;
                 int intArraySize = 0;
+                Integer[] arr = {};
+                int i = 0;
 
-                if(arraySize.getText() != "")
+                if(arraySize.getText() != "") {
                     intArraySize = Integer.parseInt(arraySize.getText());
+                    arr = randomArray(intArraySize);
+                }
+
+                Integer[][] arrays = copyArrays(5, arr);
 
                 if(HeapSort.isSelected()){
-                    sortList.add(new HeapSort(VisualSorting.randomArray(intArraySize)));
-                    sortCounter++;
+                    sortList.add(new HeapSort(arrays[i]));
+                    i++;
+                    
                 }
                 if(MergeSort.isSelected()){
-                    sortList.add(new MergeSort(VisualSorting.randomArray(intArraySize)));
-                    sortCounter++;
+                    sortList.add(new MergeSort(arrays[i]));
+                    i++;
                 }
                 if(QuickSort.isSelected()){
-                    sortList.add(new QuickSort(VisualSorting.randomArray(intArraySize)));
-                    sortCounter++;
+                    sortList.add(new QuickSort(arrays[i]));
+                    i++;
+                    
                 }
                 if(ShellSort.isSelected()){
-                    sortList.add(new ShellSort(VisualSorting.randomArray(intArraySize)));
-                    sortCounter++;
+                    sortList.add(new ShellSort(arrays[i]));
+                    i++;
+                    
                 }
                 if(InsertionSort.isSelected()){
-                    sortList.add(new InsertionSort(VisualSorting.randomArray(intArraySize)));
-                    sortCounter++;
+                    sortList.add(new InsertionSort(arrays[i]));
+                    i++;
+                    
                 }
 
                 sortArray = sortList.toArray();
+                gui.this.arraySize = intArraySize;
+                gui.this.sort = Arrays.copyOf(sortArray, sortArray.length, Sort[].class);
 
-                if(sortCounter>0 && intArraySize >= 2 && intArraySize <= 10000){
-                    //call the function
-                }
+                    if (intArraySize >= 2 && intArraySize <= 1000)
+                        startSort(sort);
+
+
 
             }
         });
@@ -120,14 +159,70 @@ public class gui extends WindowAdapter{
 
     }
 
-    public static void main(String[] args) {
-        //Schedule a job for the event-dispatching thread:
-        //creating and showing this application's GUI.
-        javax.swing.SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                createGUI();
+    /**
+     * Copies a given array and returns an array containing the copies.
+     *
+     * @param nArrays   number of arrays copied.
+     * @param arrCopied source array.
+     * @return          an array of the copied arrays.
+     */
+    private static Integer[][] copyArrays(int nArrays, Integer[] arrCopied) {
+
+        Integer[][] arrays = new Integer[nArrays][];
+
+        for (int i = 0; i < nArrays; i++) {
+
+            arrays[i] = new Integer[arrCopied.length];
+
+            for (int j = 0; j < arrCopied.length; j++) {
+                arrays[i][j] = arrCopied[j];
             }
-        });
+
+        }
+
+        return arrays;
+    }
+
+    private void startSort(Sort[] sort){
+
+        GridLayout manager = new GridLayout(sort.length/ 2, (sort.length + 1) / 2);
+
+        GraphFrame f = new GraphFrame(sort, manager);
+
+        f.setVisible(true);
+
+        for (Sort s : sort) {
+            //switch(s.getClass())
+
+            (new Thread(s)).start();
+
+        }
+
+    }
+
+
+    /**
+     * Returns a randomly sorted array.
+     *
+     * @param arrayLength the length of the random array.
+     * @return            a randomly sorted array.
+     */
+    public static Integer[] randomArray(int arrayLength) {
+
+        Integer[] arr = new Integer[arrayLength];
+
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = i + 1;
+        }
+
+        Collections.shuffle(Arrays.asList(arr));
+        return arr;
+    }
+
+    public static void main(String[] args) {
+
+        gui mainGUI = new gui();
+
     }
 
 }

@@ -1,4 +1,4 @@
-package visual;
+package src.visual;
 import java.awt.*;
 import java.lang.Thread;
 

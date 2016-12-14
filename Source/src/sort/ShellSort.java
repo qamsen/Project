@@ -1,5 +1,7 @@
-package sort;
+package src.sort;
 import java.util.Arrays;
+import src.sort.*;
+import src.visual.*;
 //package Algorithms;
 
 
@@ -19,7 +21,6 @@ public class ShellSort extends Sort {
     /**
      * Sorts the array using Shellsort.
      */
-    GraphArray shellGraph = new GraphArray(getArray());
 
     public void sort() {
         int n = getArray().length;

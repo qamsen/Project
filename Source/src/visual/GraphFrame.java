@@ -1,5 +1,5 @@
-package visual;
-import sort.*;
+package src.visual;
+import src.sort.*;
 import java.awt.*;
 import javax.swing.*;
 /* Creates that frame that all the sorting algorithms will appear on.
@@ -17,7 +17,8 @@ public class GraphFrame extends JFrame {
      * Constructs the frame that all the sorting algorithms will exist in.
      *
      * @param sorts   an array of the sorting algorithms displayed.
-     * @param manager the layout manager used to organize the sorts.  */ public GraphFrame(Sort[] sorts, LayoutManager manager) {
+     * @param manager the layout manager used to organize the sorts.  */
+    public GraphFrame(Sort[] sorts, LayoutManager manager) {
 
         super("Sorting Algorithms");
         this.sorts = sorts;
@@ -31,7 +32,7 @@ public class GraphFrame extends JFrame {
      */
     private void initializeFrame() {
         add(container);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         pack();
     }
 
@@ -51,8 +52,12 @@ public class GraphFrame extends JFrame {
      */
     private void setGraphPanels() {
 
-        for (Sort s : sorts)
+        GraphArray g;
+
+        for (Sort s : sorts) {
+            //g = new GraphArray(s.getArray(), s.getClass().getSimpleName());
             container.add(s.getGraph().getChartPanel());
+        }
     }
 
 }

@@ -1,4 +1,6 @@
-package sort;
+package src.sort;
+
+import src.visual.*;
 
 /**
  * Abstract class for all sorting algorithms.
@@ -6,7 +8,6 @@ package sort;
  * Name : Kameron Damaska
  * ID   : krd42
  * Date : 12/5/2016 */
-import java.lang.Thread;
 
 public abstract class Sort implements Runnable {
 
@@ -30,7 +31,7 @@ public abstract class Sort implements Runnable {
         this.arr = arr;
         this.isSorted = isSorted(arr);
 
-        /* this.graph = new GraphArray(arr); */
+         this.graph = new GraphArray(arr, this.getClass().getSimpleName());
     }
 
     /* Sorts the array */
@@ -62,7 +63,7 @@ public abstract class Sort implements Runnable {
     }
 
     public void graph() {
-        graph = new GraphArray(getArray());
+        graph = new GraphArray(getArray(), getClass().getSimpleName());
         sortArray();
     }
 
@@ -72,7 +73,7 @@ public abstract class Sort implements Runnable {
     
     public void run() {
         if (graph == null)
-            graph = new GraphArray(getArray());
+            graph = new GraphArray(getArray(), getClass().getSimpleName());
         sortArray();
     }
 
